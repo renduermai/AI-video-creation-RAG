@@ -23,11 +23,6 @@ class RAGPipeline:
         # 存储
         self.vector_store.add_documents(results, vector_chunks, metadatas=metadatas)
 
-    def ingest_texts(self, texts, category="default"):
-        """直接灌入文本列表，带分类"""
-        vector_chunks = self.embedding_client.embed_documents(texts)
-        metadatas = [{"category": category} for _ in texts]
-        self.vector_store.add_documents(texts, vector_chunks, metadatas=metadatas)
 
     def query(self, query, category=None):
         # 问题向量化
